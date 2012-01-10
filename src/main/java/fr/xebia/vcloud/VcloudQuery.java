@@ -85,11 +85,7 @@ public class VcloudQuery {
 
 
     public static void main(String[] args) throws Exception {
-        String url = "https://62.23.45.217";
-        String username = "teamxx@xebia";
-        String password = "xxmaet";
-
-        login(url, username, password);
+        //login(url, username, password);
 
     }
 }
