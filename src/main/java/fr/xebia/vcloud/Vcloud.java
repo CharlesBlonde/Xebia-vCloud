@@ -16,6 +16,7 @@
 
 package fr.xebia.vcloud;
 
+import com.google.common.base.Strings;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Maps;
 import com.google.common.io.Resources;
@@ -109,10 +110,6 @@ public class Vcloud {
      * Root password for each VM
      */
     public static final String ADMIN_PASSWORD = "xebia2012";
-    
-    public static String getVappName(){
-        return  "vApp - team 102";
-    }
 
     /**
      * Login in vCloud Director
@@ -146,7 +143,7 @@ public class Vcloud {
     /**
      * Find VM template in catalogue
      * @param templateName The vApp Template name
-     * @param name The VM name
+     * @param name The VM name inside the vApp Template
      * @return the vAppTemplate for this VM
      * @throws VCloudException vCloud error
      */
@@ -181,8 +178,7 @@ public class Vcloud {
         Organization org = Organization.getOrganizationByReference(vcloudClient, orgRef);
         Collection<ReferenceType> vdcRefs = org.getVdcRefs();
         ReferenceType vdcRef = Iterables.getOnlyElement(vdcRefs);
-        Vdc cVdc = Vdc.getVdcByReference(vcloudClient, vdcRef);
-        return cVdc;
+        return Vdc.getVdcByReference(vcloudClient, vdcRef);
     }
 
     /**
@@ -423,6 +419,9 @@ public class Vcloud {
         startVM(vmTomcat1);
         startVM(vmTomcat2);
         startVM(vmApache);
+
+        String ipApache = Iterables.getOnlyElement(vmApache.getNetworkConnections()).getIpAddress();
+        System.out.println("http://"+ipApache+"/xebia-petclinic");
     }
 
     public static void main(String[] args) throws Exception {
@@ -431,11 +430,16 @@ public class Vcloud {
         String url = ressources.getString("vcloud.url");
         String username = ressources.getString("vloud.username");
         String password = ressources.getString("vloud.password");
+        String vAppName = ressources.getString("vapp.name");
+
+        if(Strings.isNullOrEmpty(vAppName)){
+            throw new IllegalStateException("You must set vApp name in vmware.properties");
+        }
 
         login(url, username, password);
         Vdc vdc = getVdc();
         
-        ComposeVAppParamsType composeParams = createComposeParams(getVappName());
+        ComposeVAppParamsType composeParams = createComposeParams(vAppName);
         addVmApache(composeParams);
         addVmMySQL(composeParams);
         addTwoVmsTomcat(composeParams);
