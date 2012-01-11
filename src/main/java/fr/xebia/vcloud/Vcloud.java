@@ -111,7 +111,7 @@ public class Vcloud {
     public static final String ADMIN_PASSWORD = "xebia2012";
     
     public static String getVappName(){
-        return  "vApp - team 101";
+        return  "vApp - team 102";
     }
 
     /**
@@ -181,8 +181,8 @@ public class Vcloud {
         Organization org = Organization.getOrganizationByReference(vcloudClient, orgRef);
         Collection<ReferenceType> vdcRefs = org.getVdcRefs();
         ReferenceType vdcRef = Iterables.getOnlyElement(vdcRefs);
-        Vdc vdc = Vdc.getVdcByReference(vcloudClient, vdcRef);
-        return vdc;
+        Vdc cVdc = Vdc.getVdcByReference(vcloudClient, vdcRef);
+        return cVdc;
     }
 
     /**

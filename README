@@ -1,1 +1,14 @@
-This file was created by IntelliJ IDEA 11.0.1 for binding GitHub repository
+Install :
+
+vCloud SDK is not available in any maven repository, you have to manually install the following 2 jar in your maven repo :
+ * rest-api-schemas-1.5.0.jar
+ * vcloud-java-sdk-1.5.0.jar
+
+mvn install:install-file -Dfile=vcloud-java-sdk-1.5.0.jar -DgroupId=com.vmware -DartifactId=vcloud -Dversion=1.5 -Dpackaging=jar -DgeneratePom=true
+mvn install:install-file -Dfile=rest-api-schemas-1.5.0.jar -DgroupId=com.vmware -DartifactId=rest-api-schemas -Dversion=1.5 -Dpackaging=jar -DgeneratePom=true
+
+You have to download vCloud SDK here (need registration) : http://communities.vmware.com/community/vmtn/developer/forums/vcloudsdkjava
+
+Tip : If you dont want to register, you can download vCloud SDK for Java 1.5.0 -Community Samples in the same page (direct download :
+http://communities.vmware.com/servlet/JiveServlet/downloadBody/17023-102-1-21875/VMware-vCloudDirector-JavaSDK-Community-1.5.0-472414.zip).
+The two jar are available in the lib directory
