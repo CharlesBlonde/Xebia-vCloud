@@ -83,6 +83,9 @@
         <!--
            mvn install:install-file -Dfile=vcloud-java-sdk-1.5.0.jar -DgroupId=com.vmware -DartifactId=vcloud -Dversion=1.5 -Dpackaging=jar -DgeneratePom=true
            mvn install:install-file -Dfile=rest-api-schemas-1.5.0.jar -DgroupId=com.vmware -DartifactId=rest-api-schemas -Dversion=1.5 -Dpackaging=jar -DgeneratePom=true
+
+           mvn install:install-file -Dfile=vcloud-1.5-javadoc.jar -DgroupId=com.vmware -DartifactId=vcloud -Dversion=1.5 -Dpackaging=jar -DgeneratePom=true -Dclassifier=javadoc
+           mvn install:install-file -Dfile=vcloud-1.5-javadoc.jar -DgroupId=com.vmware -DartifactId=rest-api-schemas -Dversion=1.5 -Dpackaging=jar -DgeneratePom=true -Dclassifier=javadoc
         -->
         <dependency>
             <groupId>com.vmware</groupId>
@@ -111,6 +114,18 @@
                     <source>1.6</source>
                     <target>1.6</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
