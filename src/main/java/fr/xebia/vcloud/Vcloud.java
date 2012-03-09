@@ -100,7 +100,7 @@ public class Vcloud {
     /**
      * The vCloud client
      */
-    private VcloudClient vcloudClient;
+    public VcloudClient vcloudClient;
 
     /**
      * The virtual Datacenter
@@ -150,7 +150,7 @@ public class Vcloud {
      * @throws VCloudException vCloud Error
      * @see fr.xebia.vcloud.answer.VcloudAnswer#initVdc() Soluce
      */
-    private void initVdc() throws VCloudException {
+    public void initVdc() throws VCloudException {
         throw new RuntimeException("To be implemented");
         // Init VDC field with the only VDC in the only organisation
         /**
@@ -525,5 +525,17 @@ public class Vcloud {
         URL resource = Resources.getResource(scriptName);
         String script = Resources.toString(resource, Charset.defaultCharset());
         return script;
+    }
+
+    public VcloudClient getVcloudClient() {
+        return vcloudClient;
+    }
+
+    public Vdc getVdc() {
+        return vdc;
+    }
+
+    public ReferenceType getOrgNetworkRef() {
+        return orgNetworkRef;
     }
 }

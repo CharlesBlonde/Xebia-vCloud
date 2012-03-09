@@ -455,4 +455,16 @@ public class VcloudAnswer {
         Iterables.getOnlyElement(tasks).waitForTask(0);
         configureAndStartVMs(vapp);
     }
+
+    public VcloudClient getVcloudClient() {
+        return vcloudClient;
+    }
+
+    public Vdc getVdc() {
+        return vdc;
+    }
+
+    public ReferenceType getOrgNetworkRef() {
+        return orgNetworkRef;
+    }
 }
