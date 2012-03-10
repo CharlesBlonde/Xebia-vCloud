@@ -15,16 +15,23 @@
 
 package fr.xebia.vcloud;
 
+import com.vmware.vcloud.sdk.VcloudClient;
+import com.vmware.vcloud.sdk.constants.Version;
+import fr.xebia.vcloud.answer.VcloudAnswer;
 import junit.framework.TestCase;
 import org.junit.Test;
+
+import java.util.ResourceBundle;
 
 /**
  * @author cblonde@xebia.fr
  */
 public class VcloudTest {
-    @Test
+    //@Test
     public void startVapp() throws Exception {
-        Vcloud vcloud = new Vcloud();
+        ResourceBundle ressources = ResourceBundle.getBundle("vmware");
+        String url = ressources.getString("vcloud.url");
+        Vcloud vcloud = new Vcloud(new VcloudClient(url, Version.V1_5));
         vcloud.startVapp();
     }
 }
